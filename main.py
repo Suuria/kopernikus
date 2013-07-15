@@ -9,8 +9,13 @@ def adddomain(domain):
 
 
 def realdomain(falsedomain):
-    domain = 0
-    return domain
+    print falsedomain
+    print "Input initial data.  Must be 10 characters, each being a-f."
+    input = raw_input()
+    while len(input) != 10 or not set(input).issubset('abcdef'):
+        print "Must enter 10 characters, each being a-f."
+        input = raw_input()
+    return falsedomain
 
 
 if __name__ == '__main__':
