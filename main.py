@@ -10,12 +10,16 @@ def adddomain(domain):
 
 def realdomain(falsedomain):
     print falsedomain
-    print "Input initial data.  Must be 10 characters, each being a-f."
-    input = raw_input()
-    while len(input) != 10 or not set(input).issubset('abcdef'):
-        print "Must enter 10 characters, each being a-f."
-        input = raw_input()
-    return falsedomain
+    print "Your Domain redirects to " + falsedomain
+    rd = raw_input("Would you like to use this Domain? (Y/n) ")
+    if (rd == "Y") or (rd == "Yes"):
+        return falsedomain
+    else:
+        return 0
+    #input = raw_input()
+    #while len(input) == "no":
+    #    print "Must enter 10 characters, each being a-f."
+    #    input = raw_input()
 
 
 if __name__ == '__main__':
