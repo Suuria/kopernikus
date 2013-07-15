@@ -13,13 +13,14 @@ def aim(domain):
 
     :param domain:
     """
-    c = httplib.HTTPConnection(domain)
-    c.request("GET", "/index.php")
-    c1 = c.getresponse()
-    if (c1.status == 302) or (c1.status == 301):
-        c2 = c1.getheader('location')
-        return c2,
-    return domain
+    a = httplib.HTTPConnection(domain)
+    a.request("GET", "/index.php")
+    a1 = a.getresponse()
+    astat = a1.status
+    if (astat == 302) or (astat == 301):
+        a2 = a1.getheader('location')
+        return a2, astat
+    return (domain, astat)
 
 
 if __name__ == '__main__':
@@ -28,5 +29,5 @@ if __name__ == '__main__':
                         default='www.s24d.de')
     args = parser.parse_args()
 
-c1 = aim(args.domain)
-print c1
+c1, c2 = aim(args.domain)
+print c1, c2
