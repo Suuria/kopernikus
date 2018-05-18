@@ -1,8 +1,7 @@
 __author__ = 'alex'
 
 import argparse
-import httplib
-
+import http.client as http
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Is the Site Up')
@@ -10,18 +9,18 @@ if __name__ == '__main__':
                         default='rewrite.local')
     args = parser.parse_args()
 
-    conn = httplib.HTTPConnection(args.domain)
+    conn = http.HTTPConnection(args.domain)
     conn.request("GET", "/")
     conn1 = conn.getresponse()
     connstat = conn1.status
 
     if connstat == 301:
         domain = conn1.getheader('location')
-        print "Your Domain redirects to " + domain
-        rd = raw_input("Would you like to use this Domain? (Y/n) ")
+        print("Your Domain redirects to " + domain)
+        rd = input("Would you like to use this Domain? (Y/n) ")
         if (rd == "Y") or (rd == "Yes"):
             domain = domain
         else:
             domain = args.domain
 
-    print domain
+    print(domain)
